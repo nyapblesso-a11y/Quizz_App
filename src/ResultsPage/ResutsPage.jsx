@@ -6,7 +6,7 @@ const ResutsPage = () => {
   return (
     <> 
      <div className='bg-transparent  p-8 rounded-lg shadow-md text-center'>
-    <h1 className='text-4xl font-bold text-violet mb-6'>Here are your score for this questioning session</h1>
+     <h1 className='text-4xl font-bold text-violet mb-6'>Here are your score for this questioning session</h1>
 
     <p className='text-lg text-gray-900 mb-8'>Score 1 of 10</p>
 
