@@ -1,13 +1,12 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import { fetchQuestion } from "./ApiServices/services";
+import { fetchQuestion } from "./Services/services";
 
 export const initialState = {
   questions: [],
   currentIndex: 0,
-  answer: [],
-  currentIndex: false,
+  answers: [],
   error: null,
   timer: 10,
 };
@@ -19,16 +18,17 @@ export const QuizzStore = create(
       resetQuizz: () => {
         set((state) => Object.assign(state, initialState));
       },
+
       startQuizz: async () => {
         set((state) => {
-          state.answer = [];
+          state.answers = [];
           state.currentIndex = 0;
           state.timer = 10;
           state.error = null;
         });
         try {
           const data = await fetchQuestion();
-          
+
           const questions = data.map((item) => {
             return {
               id: item.id,
@@ -36,46 +36,44 @@ export const QuizzStore = create(
               options: [...item.incorrectAnswers, item.correctAnswer].sort(
                 () => Math.random() - 0.5
               ),
-
               correctAnswer: item.correctAnswer,
             };
           });
 
-          set((state)=> {
+          set((state) => {
             state.questions = questions;
             state.currentIndex = 0;
-          })
-          console.log(questions)
+          });
         } catch (error) {
-          console.error('error fetching questions', error)
-          set((state)=> {
-            state.error = 'failed to load questions, please try again'
-          })
+          console.error("error fetching questions", error);
+          set((state) => {
+            state.error = "failed to load questions, please try again";
+          });
         }
+        // console.log(questions);
       },
 
-      chooseAnswer: (chosen) => {
+      chooseAnswer: (selected) => {
         set((state) => {
-          const {questions, currentIndex, answers} = state
-          const updatedQuestions = questions.map((question, index) => index === currentIndex ?{...question, selectedAnswer: chosen}: question)
+          const { questions, currentIndex, answers } = state;
+          const updatedAnswers = [
+            ...answers,
+            { questionId: questions[currentIndex].id, answers: selected },
+          ];
 
-          const updatedAnswer = [...answers, {questionId: questions[currentIndex].id, answer: chosen,},]
-
-          const nextIndex = currentIndex +1
-
+          const nextIndex = currentIndex + 1;
           return {
-            questions: updatedQuestions,
-            answers: updatedAnswer,
-            currentIndex: nextIndex < questions.length ? nextIndex : currentIndex + 1,
-            timer: initialState.timer
-          }
-        })
-           console.log(get().answers)
-      }
+            answers: updatedAnswers,
+            currentIndex: nextIndex,
+            timer: initialState.timer,
+          };
+        });
+        //  console.log(get().answers)
+      },
     })),
     {
-      name: 'Quizz-storage',
-      storage: createJSONStorage(()=> localStorage),
+      name: "Quizz-storage",
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

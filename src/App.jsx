@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HopePage/>}/>
           <Route path='/quizz' element={<QuzzPage/>}/>
-          <Route path='quizz/results' element={<ResutsPage/>}/>
+          <Route path='/quizz/results' element={<ResutsPage/>}/>
         </Routes>
         </BrowserRouter>
        
