@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+
 import "./QuizzPage.css";
 import { useNavigate } from "react-router-dom";
 import { useQuesStore } from "../QuizzStore";
@@ -16,7 +16,6 @@ export const QuzzPage = () => {
         <h1 className="text-4xl font-bold text-amber-100 mb-4">
           Questions for you!
         </h1>
-        <p className="">Timer:{timer}s</p>
         <h6 className="text-lg text-gray-900 mb-2">Have Fun</h6>
         <h1 className="text-white font-bold text-3xl">
           {currentIndex + 1}.{" "}
