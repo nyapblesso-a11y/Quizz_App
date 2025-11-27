@@ -18,9 +18,6 @@ function App() {
           <Route path='/quizz/results' element={<ResutsPage/>}/>
         </Routes>
         </BrowserRouter>
-       
-
-      
       </>
     </>
   )

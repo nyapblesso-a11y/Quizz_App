@@ -8,13 +8,12 @@ const ResutsPage = () => {
   const { questions, answers, startQuizz } = useQuesStore();
   const handlePlayBack = async () => {
     await startQuizz();
-
     navigate("/quizz");
   };
 
   const selectedAnswers = answers.map((item) => item.answers);
   const correctAnswers = questions.map((question) => question.correctAnswer);
-  console.log('all correct ansers'  , correctAnswers)
+  console.log("all correct ansers", correctAnswers);
   const isCorrect = selectedAnswers.map(
     (ans, index) => ans === correctAnswers[index]
   );
@@ -34,53 +33,51 @@ const ResutsPage = () => {
         <h1 className="text-4xl font-bold text-violet mb-6 text-amber-100">
           Here are your score for this questioning session
         </h1>
-        <p className="text-lg text-white mb-8">
+        <p className="text-lg text-amber-100 mb-8 font-bold">
           {score} out of {questions.length}
         </p>
-        
-          <>
-            {" "}
-            <div className="text-left space-y-6">
-              {questions.map((question, index) => {
-                const userAnswer = selectedAnswers[index];
-                const correctAnswer = question.correctAnswer;
-                const userWasCorrect = isCorrect[index];
-                return (
-                  <div key={index} className="p-4 border rounded-lg">
-                    <h2 className="font-semibold text-xl text-amber-50">
-                      {index + 1}. {question.question}
-                    </h2>
-                    {userWasCorrect ? (
-                      <p className="text-green-600 font-bold">
-                       Correct Answer: {correctAnswer}
+
+        <>
+          {" "}
+          <div className="text-left space-y-6">
+            {questions.map((question, index) => {
+              const userAnswer = selectedAnswers[index];
+              const correctAnswer = question.correctAnswer;
+              const userWasCorrect = isCorrect[index];
+              return (
+                <div key={index} className="p-2 border rounded-lg">
+                  <h2 className="font-semibold text-xl text-amber-50">
+                    {index + 1}. {question.question}
+                  </h2>
+                  {userWasCorrect ? (
+                    <p className="text-green-600 font-bold">
+                      Correct Answer: {correctAnswer}
+                    </p>
+                  ) : (
+                    <div>
+                      <p className="text-red-600 font-bold">
+                        Your Answer: {userAnswer}
                       </p>
-                    ) : (
-                      <div>
-                        <p className="text-red-600 font-bold">
-                           Your Answer: {userAnswer}
-                        </p>
-                        <p className="text-green-600 font-bold">
-                           Correct Answer: {correctAnswer}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </>
-    
-      
+                      <p className="text-green-600 font-bold">
+                        Correct Answer: {correctAnswer}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </>
 
         <div className="">
           <button
-            className="bg-transparent p-8 hover:bg-[#232024] text-white font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
+            className="bg-transparent p-8 hover:bg-[#232024] text-amber-100 font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
             onClick={() => navigate("/")}
           >
             Home
           </button>
           <button
-            className="bg-transparent p-8 hover:bg-[#232024] text-white font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
+            className="bg-transparent p-8 hover:bg-[#232024] text-amber-100 font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
             onClick={handlePlayBack}
           >
             Play Back

@@ -5,25 +5,25 @@ import { useQuesStore } from "../QuizzStore";
 
 export const QuzzPage = () => {
   const navigate = useNavigate();
-  const { questions, currentIndex, chooseAnswer } = useQuesStore();
-
-  let currentQuestion = questions[currentIndex];
+  const { questions, currentIndex, chooseAnswer, timer } = useQuesStore();
+  const currentQuestion = questions[currentIndex];
   console.log(currentQuestion);
-
-  
   console.log("nnnnnwwe", questions, currentIndex);
 
   return (
     <>
       <div className="bg-transparent  p-8 rounded-lg shadow-md text-center">
-        <h1 className="text-4xl font-bold text-violet mb-6">
+        <h1 className="text-4xl font-bold text-amber-100 mb-4">
           Questions for you!
         </h1>
+        <p className="">Timer:{timer}s</p>
         <h6 className="text-lg text-gray-900 mb-2">Have Fun</h6>
         <h1 className="text-white font-bold text-3xl">
-          {currentIndex + 1}. {currentIndex < questions.length ? currentQuestion.question : navigate('/quizz/results')}
+          {currentIndex + 1}.{" "}
+          {currentIndex < questions.length
+            ? currentQuestion.question
+            : navigate("/quizz/results")}
         </h1>
-
         <div className="flex flex-col gap-2 mt-4 ">
           {currentQuestion.options.map((option, id) => {
             return (
@@ -37,13 +37,6 @@ export const QuzzPage = () => {
             );
           })}
         </div>
-
-        {/* <button
-          className="bg-transparent p-8 hover:bg-[#232024] text-white font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
-          onClick={() => navigate("results")}
-        >
-          <span>check scores</span>
-        </button>  */}
       </div>
     </>
   );
