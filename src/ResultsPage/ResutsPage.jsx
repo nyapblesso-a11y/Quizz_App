@@ -5,21 +5,20 @@ import { current } from "immer";
 
 const ResutsPage = () => {
   const navigate = useNavigate();
-  const { questions, answers } = useQuesStore();
+  const { questions, answers, startQuizz } = useQuesStore();
+  const handlePlayBack = async () => {
+    await startQuizz();
 
-  const selectedAnswer = answers.map((answer) => {
-    return answer.answers;
-  });
-  console.log("Selected", selectedAnswer);
+    navigate("/quizz");
+  };
 
-  const currectAnswer = questions.map((question) => {
-    return question.correctAnswer;
-  });
-  console.log("Correct", currectAnswer);
-
-  const isCorrect = selectedAnswer.map(
-    (_, index) => selectedAnswer[index] === currectAnswer[index]
+  const selectedAnswers = answers.map((item) => item.answers);
+  const correctAnswers = questions.map((question) => question.correctAnswer);
+  console.log('all correct ansers'  , correctAnswers)
+  const isCorrect = selectedAnswers.map(
+    (ans, index) => ans === correctAnswers[index]
   );
+
   console.log(isCorrect);
   let score = 0;
   for (let i = 0; i < isCorrect.length; i++) {
@@ -27,48 +26,70 @@ const ResutsPage = () => {
       score += 1;
     }
   }
-  console.log("Questions", questions);
 
+  console.log("Questions", questions);
   return (
     <>
       <div className="bg-transparent  p-8 rounded-lg shadow-md text-center">
-        <h1 className="text-4xl font-bold text-violet mb-6">
+        <h1 className="text-4xl font-bold text-violet mb-6 text-amber-100">
           Here are your score for this questioning session
         </h1>
-        <p className="text-lg text-white-900 mb-8">
-          {score} of {questions.length}
+        <p className="text-lg text-white mb-8">
+          {score} out of {questions.length}
         </p>
-        {
+        
           <>
-            {questions.map((question, id) => {
-              return (
-                <div key={id}>
-                  <h1>
-                    {id + 1}. {question.question}
-                  </h1>
-                  {isCorrect ? (
-                    <p>
-                      {selectedAnswer[id] === question.correctAnswer
-                        ? selectedAnswer[id]
-                        : ""}
-                    </p>
-                  ) : (
-                    <>
-                      <p>{selectedAnswer[id]}</p>
-                      <p>{question.correctAnswer}</p>
-                    </>
-                  )}
-                </div>
-              );
-            })}
+            {" "}
+            <div className="text-left space-y-6">
+              {questions.map((question, index) => {
+                const userAnswer = selectedAnswers[index];
+                const correctAnswer = question.correctAnswer;
+                const userWasCorrect = isCorrect[index];
+                return (
+                  <div key={index} className="p-4 border rounded-lg">
+                    <h2 className="font-semibold text-xl text-amber-50">
+                      {index + 1}. {question.question}
+                    </h2>
+                    {userWasCorrect ? (
+                      <p className="text-green-600 font-bold">
+                       Correct Answer: {correctAnswer}
+                      </p>
+                    ) : (
+                      <div>
+                        <p className="text-red-600 font-bold">
+                           Your Answer: {userAnswer}
+                        </p>
+                        <p className="text-green-600 font-bold">
+                           Correct Answer: {correctAnswer}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            { correctAnswers.length  ? (
+              <p className="text-green-600 font-bold text-3xl">CONGRATUTALTIONS YOU MADE IT ABOVE THE AVERAGE</p>
+            ): (
+              <p className="text-red-600 font-bold text-3xl">OOPS!! TRY TO AMKE ABOVE THE AVERAGE</p>
+            )}
           </>
-        }
+    
+      
+
         <div className="">
           <button
             className="bg-transparent p-8 hover:bg-[#232024] text-white font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
             onClick={() => navigate("/")}
           >
-            Restart
+            Home
+          </button>
+          <button
+            className="bg-transparent p-8 hover:bg-[#232024] text-white font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
+            onClick={handlePlayBack}
+          >
+            Play Back
           </button>
         </div>
       </div>
