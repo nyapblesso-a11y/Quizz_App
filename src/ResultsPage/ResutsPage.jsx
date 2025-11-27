@@ -68,12 +68,6 @@ const ResutsPage = () => {
                 );
               })}
             </div>
-
-            { correctAnswers.length  ? (
-              <p className="text-green-600 font-bold text-3xl">CONGRATUTALTIONS YOU MADE IT ABOVE THE AVERAGE</p>
-            ): (
-              <p className="text-red-600 font-bold text-3xl">OOPS!! TRY TO AMKE ABOVE THE AVERAGE</p>
-            )}
           </>
     
       
