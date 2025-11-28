@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import { fetchQuestion } from "./Services/services";
+import { fetchQuestion } from "../Services/services";
 
 export const initialState = {
   questions: [],
@@ -68,7 +68,17 @@ export const QuizzStore = create(
             timer: initialState.timer,
           };
         });
-        //  console.log(get().answers)
+      },
+
+      countDown: () => {
+        const { timer } = get();
+        if (timer <= 0) {
+          get().chooseAnswer(null);
+        } else {
+          set((s) => {
+            s.timer = timer - 1;
+          });
+        }
       },
     })),
     {

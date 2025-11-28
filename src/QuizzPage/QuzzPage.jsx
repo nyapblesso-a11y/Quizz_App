@@ -1,14 +1,21 @@
-
-import "./QuizzPage.css";
 import { useNavigate } from "react-router-dom";
-import { useQuesStore } from "../QuizzStore";
+import { useQuesStore } from "../Store/quizzStore";
+import { useEffect } from "react";
 
 export const QuzzPage = () => {
   const navigate = useNavigate();
-  const { questions, currentIndex, chooseAnswer, timer } = useQuesStore();
+  const { questions, currentIndex, chooseAnswer, countDown, timer } =
+    useQuesStore();
   const currentQuestion = questions[currentIndex];
   console.log(currentQuestion);
   console.log("nnnnnwwe", questions, currentIndex);
+
+  useEffect(() => {
+    const counter = setInterval(() => {
+      countDown();
+    }, 1000);
+    return () => clearInterval(counter);
+  }, [countDown]);
 
   return (
     <>
@@ -16,7 +23,19 @@ export const QuzzPage = () => {
         <h1 className="text-4xl font-bold text-amber-100 mb-4">
           Questions for you!
         </h1>
-        <h6 className="text-lg text-gray-900 mb-2">Have Fun</h6>
+
+        {timer < 6 ? (
+          <p className="text-2xl text-green-600 p-2">
+            <span className="text-red-600 animate-pulse font-semibold">{timer}s </span>/10s
+          </p>
+        ) : (
+          <p>
+            <p className="text-2xl text-green-600 p-2">
+              <span className="text-green-600 font-semibold">{timer}s </span>/10s
+            </p>
+          </p>
+        )}
+
         <h1 className="text-white font-bold text-3xl">
           {currentIndex + 1}.{" "}
           {currentIndex < questions.length

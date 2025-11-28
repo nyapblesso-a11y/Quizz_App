@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuesStore } from "../QuizzStore";
+import { useQuesStore } from "../Store/quizzStore";
 import { current } from "immer";
 
 const ResutsPage = () => {

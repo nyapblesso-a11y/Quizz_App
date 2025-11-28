@@ -4,5 +4,8 @@ body {
  align-items: center;
  justify-content: center;
  max-height: 100vh;
- margin-top: 20rem;
+ margin-top: 10rem;
 }
+
+
+@import 'tailwindcss'
