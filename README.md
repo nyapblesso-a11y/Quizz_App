@@ -14,3 +14,26 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+# Project name.
+-Quizz Game
+
+# Project Description.
+-This game is based to test your knowledege on questions answering
+-The game actually has 10 questions every time you start-up tp play and every question has a max-time of 10s to answer failure to answer the question will automatically score no point in the not answered question nad it automaticall moves to the next question. Then after answering all the questions the scores will be desplayed at then end with the questions you succeeded in answering and those you did not answer correctly with their correct answer
+
+# The Game Was Built with
+
+-Reac.JS framework 
+-JavaScript
+-Html and  Tailwind.css
+
+# To cloen the Project
+ Run
+ - git Clone git@github.com:nyapblesso-a11y/Quizz_App.git 
+ on your terminal
+ switch to the structure/syles branch
+
+ # Deployment link
+ https://quizz-98sfx5w8r-nyapbless-projects.vercel.app/
