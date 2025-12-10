@@ -29,11 +29,11 @@ const ResutsPage = () => {
   console.log("Questions", questions);
   return (
     <>
-      <div className="bg-transparent  p-8 rounded-lg shadow-md text-center">
-        <h1 className="text-4xl font-bold text-violet mb-6 text-amber-100">
+      <div className="bg-transparent h-0.5  p-4 rounded-lg shadow-md text-center">
+        <h1 className="text-2xl font-bold text-violet mb-6 text-amber-100">
           Here are your score for this questioning session
         </h1>
-        <p className="text-lg text-amber-100 mb-8 font-bold">
+        <p className="text-lg text-amber-100 mb-2 font-bold">
           {score} out of {questions.length}
         </p>
 
@@ -71,13 +71,13 @@ const ResutsPage = () => {
 
         <div className="">
           <button
-            className="bg-transparent p-8 hover:bg-[#232024] text-amber-100 font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
+            className="bg-transparent p-2 hover:bg-[#232024] text-amber-100 font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
             onClick={() => navigate("/")}
           >
             Home
           </button>
           <button
-            className="bg-transparent p-8 hover:bg-[#232024] text-amber-100 font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
+            className="bg-transparent p-2 hover:bg-[#232024] text-amber-100 font-bold py-3 px-6 rounded-1.5xl text-xl transition duration-300 ease-in-out transform hover:scale-105"
             onClick={handlePlayBack}
           >
             Play Back

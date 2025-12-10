@@ -16,7 +16,7 @@ const HopePage = () => {
         </h1>
         
         <h6 className="text-2xl text-gray-900 mb-2 font-bold ">
-          Game Rules: You've got 10 random questions to answer in 10 seconds.
+          Game Rules: You've got 10 random questions to answer in 10 seconds
           Failure to answer any question will automatically take you to the next
           question and then you'll score no point to the unanswered question.
           Test your knowledge and have fun.
