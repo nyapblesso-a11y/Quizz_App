@@ -8,7 +8,7 @@ export const initialState = {
   currentIndex: 0,
   answers: [],
   error: null,
-  timer: 10,
+  timer: 30,
 };
 
 export const QuizzStore = create(
@@ -23,7 +23,7 @@ export const QuizzStore = create(
         set((state) => {
           state.answers = [];
           state.currentIndex = 0;
-          state.timer = 10;
+          state.timer = 30;
           state.error = null;
         });
         try {

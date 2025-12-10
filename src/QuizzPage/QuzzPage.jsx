@@ -24,14 +24,14 @@ export const QuzzPage = () => {
           Questions for you!
         </h1>
 
-        {timer < 6 ? (
+        {timer < 10 ? (
           <p className="text-2xl text-green-600 p-2">
-            <span className="text-red-600 animate-pulse font-semibold">{timer}s </span>/10s
+            <span className="text-red-600 animate-pulse font-semibold">{timer}s </span>/30s
           </p>
         ) : (
           <p>
             <p className="text-2xl text-green-600 p-2">
-              <span className="text-green-600 font-semibold">{timer}s </span>/10s
+              <span className="text-green-600 font-semibold">{timer}s </span>/30s
             </p>
           </p>
         )}
