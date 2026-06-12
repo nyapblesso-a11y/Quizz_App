@@ -29,14 +29,12 @@ export const QuizzStore = create(
         try {
           const data = await fetchQuestion();
 
-          const questions = data.map((item) => {
+          const questions = data.map((item, index) => {
             return {
-              id: item.id,
-              question: item.question.text,
-              options: [...item.incorrectAnswers, item.correctAnswer].sort(
-                () => Math.random() - 0.5
-              ),
-              correctAnswer: item.correctAnswer,
+              id: index,
+              question: item.question,
+              options: ["True", "False"],
+              correctAnswer: item.correct_answer,
             };
           });
 
@@ -50,7 +48,6 @@ export const QuizzStore = create(
             state.error = "failed to load questions, please try again";
           });
         }
-        // console.log(questions);
       },
 
       chooseAnswer: (selected) => {

@@ -7,8 +7,12 @@ export const QuzzPage = () => {
   const { questions, currentIndex, chooseAnswer, countDown, timer } =
     useQuesStore();
   const currentQuestion = questions[currentIndex];
-  console.log(currentQuestion);
-  console.log("nnnnnwwe", questions, currentIndex);
+
+  useEffect(() => {
+    if (currentIndex >= questions.length && questions.length > 0) {
+      navigate("/quizz/results");
+    }
+  }, [currentIndex, questions.length, navigate]);
 
   useEffect(() => {
     const counter = setInterval(() => {
@@ -19,7 +23,7 @@ export const QuzzPage = () => {
 
   return (
     <>
-      <div className="bg-transparent  p-8 rounded-lg shadow-md text-center">
+      <div className="bg-transparent p-8 rounded-lg shadow-md text-center">
         <h1 className="text-4xl font-bold text-amber-100 mb-4">
           Questions for you!
         </h1>
@@ -29,31 +33,25 @@ export const QuzzPage = () => {
             <span className="text-red-600 animate-pulse font-semibold">{timer}s </span>/30s
           </p>
         ) : (
-          <p>
-            <p className="text-2xl text-green-600 p-2">
-              <span className="text-green-600 font-semibold">{timer}s </span>/30s
-            </p>
+          <p className="text-2xl text-green-600 p-2">
+            <span className="text-green-600 font-semibold">{timer}s </span>/30s
           </p>
         )}
 
         <h1 className="text-white font-bold text-3xl">
-          {currentIndex + 1}.{" "}
-          {currentIndex < questions.length
-            ? currentQuestion.question
-            : navigate("/quizz/results")}
+          {currentIndex + 1}. {currentQuestion && currentQuestion.question}
         </h1>
-        <div className="flex flex-col gap-2 mt-4 ">
-          {currentQuestion.options.map((option, id) => {
-            return (
-              <button
-                key={id}
-                onClick={() => chooseAnswer(option)}
-                className="p-4 border text-white border-gray-300 rounded-lg text-left hover:bg-[#808080]  transition duration-150 cursor-pointer"
-              >
-                {option}{" "}
-              </button>
-            );
-          })}
+
+        <div className="flex flex-col gap-2 mt-4">
+          {currentQuestion && currentQuestion.options.map((option, id) => (
+            <button
+              key={id}
+              onClick={() => chooseAnswer(option)}
+              className="p-4 border text-white border-gray-300 rounded-lg text-left hover:bg-[#808080] transition duration-150 cursor-pointer"
+            >
+              {option}
+            </button>
+          ))}
         </div>
       </div>
     </>

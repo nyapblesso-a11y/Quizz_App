@@ -13,7 +13,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-[#3a313a] p-4 sm:p-6 font-sans antialiased text-white">
-    
+
       <header className="w-full max-w-5xl mx-auto flex items-center justify-between py-4">
         <div className="flex items-center gap-2.5">
           <div className="h-9 w-9 rounded-lg bg-white flex items-center justify-center shadow-md">
@@ -28,17 +28,18 @@ const HomePage = () => {
           System Ready
         </div>
       </header>
+
       <main className="flex-1 flex items-center justify-center my-8">
         <div className="max-w-xl w-full bg-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-10 md:p-12 shadow-xl backdrop-blur-sm text-center">
-                    
+
           <span className="inline-block bg-white/10 text-zinc-300 text-[11px] font-medium tracking-widest uppercase px-3 py-1 rounded-md mb-6">
             Assessment Engine
           </span>
-          
+
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-normal tracking-tight text-white mb-3">
             Welcome to the Quiz
           </h1>
-          
+
           <p className="text-zinc-400 text-xs sm:text-sm max-w-sm mx-auto mb-10 leading-relaxed">
             Please review the evaluation parameters below before initiating the session.
           </p>
@@ -48,12 +49,12 @@ const HomePage = () => {
               <span className="text-zinc-400">Total Volume</span>
               <span className="font-medium text-zinc-200">10 Questions</span>
             </div>
-            
+
             <div className="flex items-center justify-between border-b border-white/5 pb-2.5 text-xs sm:text-sm">
               <span className="text-zinc-400">Time Allocation</span>
-              <span className="font-medium text-zinc-200">10s / question</span>
+              <span className="font-medium text-zinc-200">30s / question</span>
             </div>
-            
+
             <div className="flex items-center justify-between pb-2.5 text-xs sm:text-sm">
               <span className="text-zinc-400">Enforcement</span>
               <span className="font-medium text-zinc-200 text-right">Auto-skip on expiration</span>
