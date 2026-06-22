@@ -1,0 +1,11 @@
+body {
+ background-color: rgb(58, 49, 58);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ max-height: 100vh;
+ margin-top: 10rem;
+}
+
+
+@import 'tailwindcss'

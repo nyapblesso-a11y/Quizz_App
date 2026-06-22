@@ -1,15 +1,21 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import HopePage from './HomePage/HomePage'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { QuzzPage } from './QuizzPage/QuzzPage'
+import ResutsPage from './ResultsPage/ResutsPage'
 
 function App() {
-
-
   return (
     <>
-      <div>
-      </div>
+      <>
+        <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<HopePage/>}/>
+          <Route path='/quizz' element={<QuzzPage/>}/>
+          <Route path='/quizz/results' element={<ResutsPage/>}/>
+        </Routes>
+        </BrowserRouter>
+      </>
     </>
   )
 }
